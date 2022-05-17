@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ChatController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/getUserLogin', function() {
+	return Auth::user();
+})->middleware('auth');
+
+Route::get('/', [ChatController::class, 'index'])->middleware('auth');
+Route::get('/messages', [ChatController::class, 'getMessages'])->middleware('auth')->name('get-message');
+Route::post('/messages', [ChatController::class, 'sendMessages'])->middleware('auth')->name('send-message');
