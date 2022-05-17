@@ -173,7 +173,7 @@
         color: #fff;
         text-transform: uppercase;
         text-align: left;
-        padding: 10px 10px 10px 50px;
+        padding: 10px 10px 10px 18px;
     
         h1, h2 {
             font-weight: normal;
